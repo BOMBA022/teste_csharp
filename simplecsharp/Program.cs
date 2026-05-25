@@ -11,14 +11,22 @@ builder.Services.AddHttpClient("RestCountries", c =>
 
 {
     c.BaseAddress = new Uri("https://restcountries.com/");
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+
+{
+    return new HttpClientHandler
+    {
+        SslProtocols = System.Security.Authentication.SslProtocols.Tls12
+    };
 });
+
 
 builder.Services.AddHttpClient("RestDragonBall", c =>
 
 {
     c.BaseAddress = new Uri("https://dragonball-api.com/");
 })
-
 .ConfigurePrimaryHttpMessageHandler(() =>
 
 {
